@@ -2,6 +2,7 @@ package com.compactpresenter.adapters
 
 import android.content.Context
 import android.os.Handler
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
 import com.compactpresenter.R
 import com.compactpresenter.graphs.PieChartFragment
+import com.compactpresenter.ui.ReportsFragment
 
 
 class ExpandableListViewAdapter(private val context: Context, private val activity: FragmentActivity, private val listGroup: List<String>) : BaseExpandableListAdapter() {
@@ -46,7 +48,7 @@ class ExpandableListViewAdapter(private val context: Context, private val activi
         var convertView = convertView
         if (convertView == null) {
             val groupInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = groupInflater.inflate(R.layout.group_layout, null)
+            convertView = groupInflater.inflate(R.layout.sub_report_group_title_layout, null)
         }
 
         if (convertView != null) {
@@ -66,30 +68,33 @@ class ExpandableListViewAdapter(private val context: Context, private val activi
 
             when (itemType) {
                 0 -> {
-                    convertView = childInflater.inflate(R.layout.item_report_layout, null)
+                    convertView = childInflater.inflate(R.layout.master_report_layout, null)
                     //Add fragments to view
+                    commitFragment(ReportsFragment(), R.id.report_fragment_container_layout)
                 }
                 1 -> {
-                    convertView = childInflater.inflate(R.layout.item_report_layout, null)
+                    convertView = childInflater.inflate(R.layout.master_report_layout, null)
+                    commitFragment(ReportsFragment(), R.id.report_fragment_container_layout)
                 }
                 2 -> {
-                    convertView = childInflater.inflate(R.layout.item_report_layout, null)
+                    convertView = childInflater.inflate(R.layout.master_report_layout, null)
+                    commitFragment(ReportsFragment(), R.id.report_fragment_container_layout)
                 }
                 3 -> {
                     convertView = childInflater.inflate(R.layout.graph_holder, null)
-                    commitFragment(convertView, R.id.graph_holder_layout)
+                    commitFragment(PieChartFragment(), R.id.graph_holder_layout)
                 }
             }
         }
         return convertView as View
     }
 
-    private fun commitFragment(view: View, id: Int) {
+    private fun commitFragment(fragment: Fragment, id: Int) {
 
         val uiHandler = Handler()
         uiHandler.post {
             (activity).supportFragmentManager.beginTransaction().replace(id,
-                    PieChartFragment()).commitNow()
+                   fragment).commitNow()
         }
     }
 
