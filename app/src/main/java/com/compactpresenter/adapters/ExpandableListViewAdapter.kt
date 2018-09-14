@@ -2,7 +2,7 @@ package com.compactpresenter.adapters
 
 import android.content.Context
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
+import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import com.compactpresenter.R
 import com.compactpresenter.graphs.PieChartFragment
 
 
-class ExpandableListViewAdapter(private val context: Context, private val activity: AppCompatActivity, private val listGroup: List<String>) : BaseExpandableListAdapter() {
+class ExpandableListViewAdapter(private val context: Context, private val activity: FragmentActivity, private val listGroup: List<String>) : BaseExpandableListAdapter() {
 
     override fun getGroupCount(): Int {
         return listGroup.size
@@ -50,7 +50,7 @@ class ExpandableListViewAdapter(private val context: Context, private val activi
         }
 
         if (convertView != null) {
-            var textE = convertView.findViewById(R.id.text1) as TextView
+            var textE = convertView.findViewById(R.id.header_text_view) as TextView
             textE.text = getGroup(groupPosition) as String
         }
 
@@ -66,14 +66,14 @@ class ExpandableListViewAdapter(private val context: Context, private val activi
 
             when (itemType) {
                 0 -> {
-                    convertView = childInflater.inflate(R.layout.item_widgets, null)
+                    convertView = childInflater.inflate(R.layout.item_report_layout, null)
                     //Add fragments to view
                 }
                 1 -> {
-                    convertView = childInflater.inflate(R.layout.item_text, null)
+                    convertView = childInflater.inflate(R.layout.item_report_layout, null)
                 }
                 2 -> {
-                    convertView = childInflater.inflate(R.layout.item_layouts, null)
+                    convertView = childInflater.inflate(R.layout.item_report_layout, null)
                 }
                 3 -> {
                     convertView = childInflater.inflate(R.layout.graph_holder, null)
@@ -84,7 +84,7 @@ class ExpandableListViewAdapter(private val context: Context, private val activi
         return convertView as View
     }
 
-    fun commitFragment(view: View, id: Int) {
+    private fun commitFragment(view: View, id: Int) {
 
         val uiHandler = Handler()
         uiHandler.post {

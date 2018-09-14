@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/header_report_colums"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_corner"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:background="@drawable/back_corner"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="Category" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/back_corner"
+            android:padding="5dp"
+            android:text="Quantity"
+            android:maxLines="1"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/back_corner"
+            android:padding="5dp"
+            android:text="Amount"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <include layout="@layout/category_detail_layout" />
+    <include layout="@layout/category_detail_layout" />
+    <include layout="@layout/category_detail_layout" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/category_total_textview"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:background="@drawable/back_corner2"
+            android:text="Sub Totals: $1200"
+            android:textAlignment="center"
+            android:padding="5dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>
